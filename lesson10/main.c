@@ -1,7 +1,7 @@
 #include <stdio.h>
 //#include "readf.h"
 //#include "writef.h"
-//#include "print_er.h"
+//#include "print_rez.h"
 
 struct data
 	{
@@ -28,10 +28,12 @@ int main (int argc, char **argv)
     return 0;
 }
 
+
 int readf (struct data *u)
 {	
 	signed char c;
 	int i=0;
+	
 	FILE *f;
 	f= fopen("file1", "r");
 	if (f==NULL)
@@ -45,7 +47,6 @@ int readf (struct data *u)
 		u->ch[i]= c;
 		i++;
 	}
-	
 	fclose(f);
 	return i;	
 }
@@ -54,6 +55,7 @@ int writef (struct data *u)
 {
 	int i=0;
 	signed char c;
+	
 	FILE *f;
 	f= fopen("file2", "w");
 	if (f==NULL)
@@ -62,13 +64,14 @@ int writef (struct data *u)
 		return i;
 	}
 	
-	while ((c=fgetc(f)) !=EOF) 
+	while ((u->ch[i]) !=0) 
 	{
-		u->ch[i]= c;
+		c=u->ch[i];
+		fprintf (f, "%c", c);
 		i++;
 	}
 	fclose(f);
-	return i;	
+	return --i;	
 }
 
 void print_rez(int rez1, int rez2)
