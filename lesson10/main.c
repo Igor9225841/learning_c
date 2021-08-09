@@ -7,9 +7,9 @@ struct data
 	{
 		char ch[100];
 	};
-
-int readf (struct data *u);
-int writef (struct data *u);
+		
+int readf (char *fname1, struct data *u);
+int writef (char *fname2, struct data *u);
 void print_rez (int rez1, int rez2);
 
 int main (int argc, char **argv)
@@ -17,25 +17,24 @@ int main (int argc, char **argv)
 	struct data data_file; 
 	int rez1=0;
 	int rez2=0;
-//	char fname1[10];
-//	char fname2[10];
-//	printf("Enter source and destination files\n");
-//	scanf("%c%c", fname1, fname2);
-	rez1= readf (&data_file);
-	rez2= writef (&data_file);
+	char fname1[20]={0};
+	char fname2[20]={0};
+	printf("Enter source and destination files\n");
+	scanf("%s%s", fname1, fname2);
+	rez1= readf (fname1, &data_file);
+	rez2= writef (fname2, &data_file);
 	print_rez(rez1, rez2);
 
     return 0;
 }
 
-
-int readf (struct data *u)
+int readf (char *fname1, struct data *u)
 {	
 	signed char c;
 	int i=0;
 	
 	FILE *f;
-	f= fopen("file1", "r");
+	f= fopen(fname1, "rb");
 	if (f==NULL)
 	{
 		i=-1;
@@ -51,13 +50,13 @@ int readf (struct data *u)
 	return i;	
 }
 
-int writef (struct data *u)
+int writef (char *fname2, struct data *u)
 {
 	int i=0;
 	signed char c;
 	
 	FILE *f;
-	f= fopen("file2", "w");
+	f= fopen(fname2, "rb+");
 	if (f==NULL)
 	{
 		i=-2;
@@ -84,12 +83,12 @@ void print_rez(int rez1, int rez2)
 	{
 		printf("Error. File2 not exists\n");
 	}
-	if (rez2>= 0)
+	else if (rez2>= 0)
 	{
 		printf("Copy done. Transfered %d\n", rez2);
 	}
 	return;
-};
+}
 
 
 
