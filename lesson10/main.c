@@ -1,16 +1,26 @@
+#pragma once
 #include <stdio.h>
-//#include "readf.h"
-//#include "writef.h"
-//#include "print_rez.h"
+#include "struct_data.h"
 
+#include "readfile.h"
+#include "writefile.h"
+#include "print_rez.h"
+
+
+/*
 struct data
 	{
 		char ch[100];
 	};
-		
-int readf (char *fname1, struct data *u);
-int writef (char *fname2, struct data *u);
+*/
+
+	
+/*
+int readfile (char *fname1, struct data *u);
+int writefile (char *fname2, struct data *u);
 void print_rez (int rez1, int rez2);
+*/
+
 
 int main (int argc, char **argv)
 {
@@ -21,14 +31,15 @@ int main (int argc, char **argv)
 	char fname2[20]={0};
 	printf("Enter source and destination files\n");
 	scanf("%s%s", fname1, fname2);
-	rez1= readf (fname1, &data_file);
-	rez2= writef (fname2, &data_file);
-	print_rez(rez1, rez2);
+	rez1= readfile (fname1, &data_file);
+	rez2= writefile (fname2, &data_file);
+	printrez (rez1, rez2);
 
     return 0;
 }
 
-int readf (char *fname1, struct data *u)
+/*
+int readfile (char *fname1, struct data *u)
 {	
 	signed char c;
 	int i=0;
@@ -50,7 +61,7 @@ int readf (char *fname1, struct data *u)
 	return i;	
 }
 
-int writef (char *fname2, struct data *u)
+int writefile (char *fname2, struct data *u)
 {
 	int i=0;
 	signed char c;
@@ -89,6 +100,7 @@ void print_rez(int rez1, int rez2)
 	}
 	return;
 }
+*/
 
 
 
